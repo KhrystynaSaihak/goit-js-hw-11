@@ -64,7 +64,7 @@ const onSubmit = async e => {
   imgApiService.query = searchQuery;
   const { hits, totalHits } = await imgApiService.getImg();
   if (!totalHits) {
-    Notify.warnfailureing(messages.notifyNoMatch);
+    Notify.failure(messages.notifyNoMatch);
     return;
   }
   if (imgApiService.totalHits <= imgApiService.hitsShown) {
