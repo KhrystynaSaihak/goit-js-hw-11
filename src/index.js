@@ -55,6 +55,7 @@ const onSubmit = async e => {
   e.preventDefault();
   clearGallaryMarkup();
   imgApiService.resetPage();
+  imgApiService.hitsShown = 0;
   const searchQuery = e.target.searchQuery.value.trim().toLowerCase();
   if (!searchQuery) {
     Notify.warning(messages.empty);
@@ -67,7 +68,10 @@ const onSubmit = async e => {
     Notify.failure(messages.notifyNoMatch);
     return;
   }
-  if (imgApiService.totalHits <= imgApiService.hitsShown) {
+  if (
+    imgApiService.totalHits > 40 &&
+    imgApiService.totalHits <= imgApiService.hitsShown
+  ) {
     Notify.warning(messages.notifyReachedTotalHits);
     return;
   }
